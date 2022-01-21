@@ -1,0 +1,46 @@
+ifconfig
+eth0: flags=-28669<UP,BROADCAST,MULTICAST,DYNAMIC>  mtu 1500
+        ether 30:e2:83:e0:d2:f0  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 182  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1  (Local Loopback)
+        RX packets 640  bytes 45120 (44.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 640  bytes 45120 (44.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+usb0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.7.2  netmask 255.255.255.252  broadcast 192.168.7.3
+        inet6 fe80::32e2:83ff:fee0:d2f2  prefixlen 64  scopeid 0x20<link>
+        ether 30:e2:83:e0:d2:f2  txqueuelen 1000  (Ethernet)
+        RX packets 41  bytes 4800 (4.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 32  bytes 7120 (6.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+usb1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.6.2  netmask 255.255.255.252  broadcast 192.168.6.3
+        inet6 fe80::32e2:83ff:fee0:d2f5  prefixlen 64  scopeid 0x20<link>
+        ether 30:e2:83:e0:d2:f5  txqueuelen 1000  (Ethernet)
+        RX packets 41  bytes 4800 (4.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 36  bytes 6229 (6.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+debian@beaglebone:~$ ifconfig[3Pclear[1Pexitclearifconfig[Kping.168.7.1[K[K[K[K[K[K[K[K 192.168.7.1
+PING 192.168.7.1 (192.168.7.1) 56(84) bytes of data.
+64 bytes from 192.168.7.1: icmp_seq=1 ttl=64 time=1.46 ms
+64 bytes from 192.168.7.1: icmp_seq=2 ttl=64 time=1.70 ms
+64 bytes from 192.168.7.1: icmp_seq=3 ttl=64 time=1.63 ms
+64 bytes from 192.168.7.1: icmp_seq=4 ttl=64 time=1.90 ms
+64 bytes from 192.168.7.1: icmp_seq=5 ttl=64 time=1.52 ms
+^Z
+[1]+  Stopped                 ping 192.168.7.1
+debian@beaglebone:~$ 
