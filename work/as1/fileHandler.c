@@ -23,7 +23,7 @@ void setFile(char *fileName, char *value) {
 
 
 /*
-Read the file and retrieve the file content
+Read the file and retrieve the file content (0 or 1)
 input: char*
 output: char
 */
