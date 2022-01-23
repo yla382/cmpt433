@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "joyStickControl.h"
-#include "ledControl.h"
-#include "directions.h"
+#include "joyStickControl.h"  // Importing custom methods for interacting with GPIO joystick
+#include "ledControl.h"       // Importing custom methods forintereacting with beaglebon LED 0~3
+#include "directions.h"       // Importing enum {LEFT, RIGHT, UP, DOWN}
 
+
+/*
+Returns UP or DOWN by random
+input: void
+output: enum
+*/
 directions pickDirections() {
 	int randomNum = rand() % 2;
 			
@@ -19,7 +25,9 @@ directions pickDirections() {
 }
 
 
+
 int main() {
+	// Set LED 0~3 to allow for direct control
 	initializeLedTriggers();
 	turnOffAllLeds();
 
@@ -35,19 +43,26 @@ int main() {
 	while (true) {
 		printf("Press joystick; current score (%d / %d)\n", correctAttempts, totalAttempts);
 		
+		//Get direction from GPIO joystick input
 		directions correctDirection = pickDirections();
+		
 		turnOnLed(correctDirection);
+		
+		// Turn on LED 0 or 3 based on GPIO joystick input
 		directions chosenDirection = getDirections();
 		
-		if (chosenDirection == LEFT || chosenDirection == RIGHT) {
-			// turn off BBG’s LEDs
+		if (chosenDirection == LEFT || chosenDirection == RIGHT) { // If the player moves the joystick to left to right exit out of the loop
 			break;
-		} else if (chosenDirection == UP || chosenDirection == DOWN) {
+		} else if (chosenDirection == UP || chosenDirection == DOWN) { // If the player moves the joystick to up or down, check if the guess is correct
 			if(chosenDirection == correctDirection) {
+				// Increase current score by one
 				correctAttempts++;
-				flashLeds(100000000, 1);
+
+				// Flash onces for 0.1s
+				flashLeds(100000000, 1); 
 				printf("Correct!\n");
 			} else {
+				// Flash 5 times (0.1s long for each flash)
 				flashLeds(100000000, 5);
 				printf("Incorrect! :(\n");
 			}
@@ -55,10 +70,12 @@ int main() {
 			printf("Something went wrong\n");
 		}
 
+		// Increate total user attempts
 		totalAttempts++;
 
 	}
 
+	// Player ended the game, turn off all leds and display total score
 	turnOffAllLeds();
 	printf("Your final score was (%d / %d)\n", correctAttempts, totalAttempts);
 	printf("Thank you for playing!\n");

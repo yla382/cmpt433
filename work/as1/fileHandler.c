@@ -2,7 +2,14 @@
 
 #define MAX_LENGTH 1024
 
+
+/*
+Write to the file
+input: char*, char*
+output: void
+*/
 void setFile(char *fileName, char *value) {
+	// initialize FILE with write mode
 	FILE *file = fopen(fileName, "w");
 	
 	if (file == NULL) {
@@ -14,7 +21,14 @@ void setFile(char *fileName, char *value) {
 	fclose(file);
 }
 
+
+/*
+Read the file and retrieve the file content
+input: char*
+output: char
+*/
 char getFileContent(char *fileName) {
+	// initialize FILE with read mode
 	FILE *file = fopen(fileName, "r");
 
 	if (file == NULL) {
