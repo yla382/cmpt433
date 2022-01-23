@@ -87,7 +87,11 @@ int gpioEdgeTrigger(char** fileNameForGpioValues, int size) {
 
 	}
 
-	// Missing codes add lines to close epoll fd and list of fds later
+	// close file descriptors and epoll instance
+	for(int i = 0; i < size; i++) {
+		close(fd_Array[i]);
+	}
+	close(epollfd);
 	return 0;
 }
 

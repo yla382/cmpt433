@@ -7,5 +7,9 @@
 #include "fileHandler.h" // importing file read/write methods
 #include "directions.h"  // Importing enum {LEFT, RIGHT, UP, DOWN}
 
-// typedef enum {LEFT, RIGHT, UP, DOWN} directions;
+/*
+Return the direction of joystick pressed
+input: void
+output: enum
+*/
 directions getDirections(void);
