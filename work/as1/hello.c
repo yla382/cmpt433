@@ -59,12 +59,12 @@ int main() {
 				correctAttempts++;
 
 				// Flash onces for 0.1s
-				flashLeds(100000000, 1); 
 				printf("Correct!\n");
+				flashLeds(100000000, 1); 
 			} else {
 				// Flash 5 times (0.1s long for each flash)
-				flashLeds(100000000, 5);
 				printf("Incorrect! :(\n");
+				flashLeds(100000000, 5);
 			}
 		} else {
 			printf("Something went wrong\n");
