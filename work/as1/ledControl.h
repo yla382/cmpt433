@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "fileHandler.h" // importing file read/write methods
-#include "directions.h"  // Importing enum {LEFT, RIGHT, UP, DOWN}
+#include "directions.h"  // Importing enum {LEFT, RIGHT, UP, DOWN, INVALID}
 
 // Set LED 0~3's trigger setting to None
 void initializeLedTriggers(void);
