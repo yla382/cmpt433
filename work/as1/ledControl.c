@@ -1,5 +1,8 @@
 #include "ledControl.h"
 
+// LED 0~3 trigger setting
+#define LED_TRIGGER_SETTING "none"
+
 // LED 0 related file locations
 #define LED_TRIGGER_0    "/sys/class/leds/beaglebone:green:usr0/trigger"
 #define LED_BRIGHTNESS_0 "/sys/class/leds/beaglebone:green:usr0/brightness"
@@ -19,10 +22,10 @@
 
 // Set LED 0~3's trigger setting to None
 void initializeLedTriggers() {
-	setFile(LED_TRIGGER_0, "none");
-	setFile(LED_TRIGGER_1, "none");
-	setFile(LED_TRIGGER_2, "none");
-	setFile(LED_TRIGGER_3, "none");
+	setFile(LED_TRIGGER_0, LED_TRIGGER_SETTING);
+	setFile(LED_TRIGGER_1, LED_TRIGGER_SETTING);
+	setFile(LED_TRIGGER_2, LED_TRIGGER_SETTING);
+	setFile(LED_TRIGGER_3, LED_TRIGGER_SETTING);
 }
 
 

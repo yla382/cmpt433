@@ -123,32 +123,32 @@ directions getDirections() {
 	    GPIO_VALUE_DOWN
 	};
 
-	while (true) {
-		// Set blocking
-		int triggerResult = gpioEdgeTrigger(gpioFileNames, MAX_EVENTS);
-		if (triggerResult == -1) {
-			printf("Something went wrong with epoll implementes\n");
-			exit(1);
-		}
-
-		char leftVal = getFileContent(GPIO_VALUE_LEFT);
-		if (leftVal == '0') {
-			return LEFT;
-		}
-
-		char rightVal = getFileContent(GPIO_VALUE_RIGHT);
-		if (rightVal == '0') {
-			return RIGHT;
-		}
-
-		char upVal = getFileContent(GPIO_VALUE_UP);
-		if (upVal == '0') {
-			return UP;
-		}
-
-		char downVal = getFileContent(GPIO_VALUE_DOWN);
-		if (downVal == '0') {
-			return DOWN;
-		}
+	// Set blocking
+	int triggerResult = gpioEdgeTrigger(gpioFileNames, MAX_EVENTS);
+	if (triggerResult == -1) {
+		printf("Something went wrong with epoll implementes\n");
+		exit(1);
 	}
+
+	char leftVal = getFileContent(GPIO_VALUE_LEFT);
+	if (leftVal == '0') {
+		return LEFT;
+	}
+
+	char rightVal = getFileContent(GPIO_VALUE_RIGHT);
+	if (rightVal == '0') {
+		return RIGHT;
+	}
+
+	char upVal = getFileContent(GPIO_VALUE_UP);
+	if (upVal == '0') {
+		return UP;
+	}
+
+	char downVal = getFileContent(GPIO_VALUE_DOWN);
+	if (downVal == '0') {
+		return DOWN;
+	}
+
+	return INVALID;
 }
