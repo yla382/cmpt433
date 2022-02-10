@@ -28,6 +28,6 @@ double *getArray(CircularBuffer buffer, double *arr);
 
 void resizeBuffer(CircularBuffer *buffer, int newSize);
 
-void displayBuffer(CircularBuffer buffer);
+void displayBuffer(CircularBuffer buffer, int skip);
 
 #endif

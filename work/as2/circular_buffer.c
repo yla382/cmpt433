@@ -38,17 +38,21 @@ void insertNum(CircularBuffer *buffer, double val) {
 			buffer->start = (buffer->start) + 1 >= buffer->size ? 0 : buffer->start + 1; 
 			(buffer->array)[buffer->end] = val;
 		} else {
-			if(buffer->end + 1 >= (buffer->size) - 1) {
-				buffer->isFull = true;
-			} 
 			(buffer->currentSize)++;
 			(buffer->end)++;
 			(buffer->array)[buffer->end] = val;
 		}
 	}
 
+	if(buffer->currentSize >= buffer->size) {
+		buffer->isFull = true;
+	} else {
+		buffer->isFull = false;
+	}
+
 	(buffer->historicCount)++;
 	buffer->historicSum += val;
+
 }
 
 double *getArray(CircularBuffer buffer, double *arr) {
@@ -93,49 +97,74 @@ void resizeBuffer(CircularBuffer *buffer, int newSize) {
 
 	double currentArr[buffer->currentSize];
 	getArray(*buffer, currentArr);
-
-
+	  
 	free(buffer->array);
-	int sizeDiff = (buffer->size) - newSize;
 	buffer->array = malloc(newSize * sizeof(double));
 	buffer->start = 0;
-	buffer->size = newSize;
-	
-	if(buffer->size > newSize) {
-		buffer->currentSize = newSize;
-		buffer->end = newSize - 1;
+  
+  if(newSize <= buffer->currentSize) {
+  	int sizeDiff = (buffer->currentSize) - newSize;
+  	int i;
+  	for(i = sizeDiff; i < buffer->currentSize; i++) {
+  		(buffer->array)[i - sizeDiff] = currentArr[i];
+  	}
 
-		for(int i = 0; i < newSize; i++) {
-			(buffer->array)[i] = currentArr[sizeDiff + i];
-		}
+  	buffer->currentSize = i - sizeDiff;
+  	buffer->end = i - sizeDiff - 1;
+  } else {
+  	for(int i = 0; i < buffer->currentSize; i++) {
+  		(buffer->array)[i] = currentArr[i];
+  	}
+  	buffer->end = (buffer->currentSize) - 1;
+  }
+
+  buffer->size = newSize;
+
+	if(buffer->currentSize >= buffer->size) {
+		buffer->isFull = true;
 	} else {
-		buffer->end = (buffer->currentSize) - 1;
-
-		for(int i = 0; i < buffer->currentSize; i++) {
-			(buffer->array)[i] = currentArr[i];
-		}
+		buffer->isFull = false;
 	}
 }
 
-void displayBuffer(CircularBuffer buffer) {
-	if(buffer.start == -1 && buffer.end == -1) {
-		printf("Buffer is empty");
-		return;
-	}
 
-	if(buffer.start <= buffer.end) {
-		for(int i = buffer.start; i <= buffer.end; i++) {
-			printf("%5.2f ", (buffer.array)[i]);
-		}
-	} else {
-		for(int i = buffer.start; i < buffer.size; i++) {
-			printf("%5.2f ", (buffer.array)[i]);
-		}
-
-		for(int i = 0; i <= buffer.end; i++) {
-			printf("%5.2f ", (buffer.array[i]));
-		}
+void displayBuffer(CircularBuffer buffer, int skip) {
+	int currentSize = buffer.currentSize;
+	// printf("currentSize: %d\n", currentSize);
+	// printf("start: %d\n", buffer.start);
+	// printf("end: %d\n", buffer.end);
+	// printf("isFull: %s\n", buffer.isFull ? "true":"false");
+	double currentArr[currentSize];
+	getArray(buffer, currentArr);
+	
+	for(int i = 0; i < currentSize; i+=skip) {
+		printf("%0.3f  ", currentArr[i]);
 	}
 
 	printf("\n");
 }
+
+
+
+// void displayBuffer(CircularBuffer buffer) {
+// 	if(buffer.start == -1 && buffer.end == -1) {
+// 		printf("Buffer is empty");
+// 		return;
+// 	}
+
+// 	if(buffer.start <= buffer.end) {
+// 		for(int i = buffer.start; i <= buffer.end; i++) {
+// 			printf("%5.2f ", (buffer.array)[i]);
+// 		}
+// 	} else {
+// 		for(int i = buffer.start; i < buffer.size; i++) {
+// 			printf("%5.2f ", (buffer.array)[i]);
+// 		}
+
+// 		for(int i = 0; i <= buffer.end; i++) {
+// 			printf("%5.2f ", (buffer.array[i]));
+// 		}
+// 	}
+
+// 	printf("\n");
+// }
