@@ -43,7 +43,8 @@ static void setFile(char *fileName, char *value) {
 
 static void configureI2C() {
 	if (system("config-pin P9_17 i2c") > -1 && system("config-pin P9_18 i2c") > -1) {
-		printf("pin P9_17 and p9_18 configured for i2c\n");
+		//printf("pin P9_17 and p9_18 configured for i2c\n");
+		return;
 	} else {
 		printf("Failed to configure pins to i2c\n");
 		exit(1);
