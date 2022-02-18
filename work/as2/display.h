@@ -11,8 +11,27 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+
+/*
+Initialize I2C setting to control 14 seg display. Turn off display,
+input: void
+output: void
+*/
 void initializeDisplay();
+
+/*
+Turn off display by settting values in 
+GPIO 44 and 61 to zero close I2C connection
+input: void
+output: void
+*/
 void closeDisplay();
+
+/*
+Display numbers on 14 seg display
+input: *char
+output: void
+*/
 void displayScreen(char *value);
 
 

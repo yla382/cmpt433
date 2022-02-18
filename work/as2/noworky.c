@@ -27,6 +27,7 @@ void tradeArrays(double *array1, double *array2, int size)
 	// Bus was here: smallest value of unsigned int is 0. 
 	// Once i-- run computed when i = 0, i is set to max value of unsigned int
 	// Therefore, the for loop run infinitely as i >= 0 will always be true
+	// solution: unsigned int i; -> int i;
 	int i;
 	//
 	for (i = size-1; i >= 0; i--) {

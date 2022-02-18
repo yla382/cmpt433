@@ -5,8 +5,19 @@
 #ifndef A2D_H
 #define A2D_H
 
-int getStablePotReading();
 
-double getLightLevelVoltage();
+/*
+Get current raw value of the potentiometer (uses average value)
+input: void
+output: int
+*/
+int getPotReading(void);
+
+/*
+Get voltage of the current light level from light sensor
+input: void
+output: double
+*/
+double getLightLevelVoltage(void);
 
 #endif

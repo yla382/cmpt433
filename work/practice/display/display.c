@@ -149,13 +149,6 @@ int main() {
 	writeI2cReg(i2cFileDesc, REG_DIRA, 0x00);
 	writeI2cReg(i2cFileDesc, REG_DIRB, 0x00);
 
-	// writeI2cReg(i2cFileDesc, REG_OUTA, 0x00);
-	// writeI2cReg(i2cFileDesc, REG_OUTB, 0x00);
-
-	// long seconds = 0;
-	// long nanoseconds = 500000;
-	// struct timespec delayReq = {seconds, nanoseconds};
-
 	while(true) {
 		diplayScreen(i2cFileDesc, "69");
 	}
